@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đang xử lý...</title>
+    <title>Xác nhận</title>
     <style>
         /* Cài đặt chung cho toàn trang */
         html, body {
@@ -19,47 +19,49 @@
             text-align: center;
         }
 
-        /* Màn hình chờ */
-        #loading-screen {
+        /* Màn hình chờ ban đầu với nút bấm */
+        #entry-screen {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Tạo vòng xoay loading bằng CSS */
-        .loader {
-            border: 8px solid #333; /* Vòng tròn nền */
-            border-top: 8px solid #00ff00; /* Phần xoay màu xanh */
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-
-        /* Animation cho vòng xoay */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        #loading-screen h2 {
+        /* Nút bấm được trang trí theo kiểu "công nghệ" */
+        #entry-button {
+            background-color: transparent;
+            border: 2px solid #00ff00; /* Màu xanh lá cây "hacker" */
             color: #00ff00;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-transform: uppercase;
             letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px #00ff00;
         }
 
-        /* Màn hình lừa đảo (ban đầu được ẩn) */
+        #entry-button:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+        }
+
+        /* Màn hình lừa đảo (ban đầu được ẩn đi) */
         #scam-screen {
-            display: none;
+            display: none; /* Quan trọng: Ẩn đi lúc đầu */
         }
 
+        /* Trang trí cho thông báo lừa đảo */
         #scam-message {
             color: #ff0000;
             font-size: 4vw;
-            text-shadow: 0 0 7px #ff0000, 0 0 21px #ff0000;
+            text-shadow: 
+                0 0 7px #ff0000,
+                0 0 21px #ff0000;
             animation: pulse 1.5s infinite alternate;
         }
 
+        /* Hiệu ứng nhấp nháy */
         @keyframes pulse {
             to {
                 text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
@@ -69,9 +71,9 @@
 </head>
 <body>
 
-    <div id="loading-screen">
-        <div class="loader"></div>
-        <h2>ĐANG KẾT NỐI TỚI MÁY CHỦ...</h2>
+    <div id="entry-screen">
+        <h2>Hệ thống đang chờ xác nhận</h2>
+        <button id="entry-button">Truy cập hệ thống</button>
     </div>
 
     <div id="scam-screen">
@@ -79,17 +81,16 @@
     </div>
 
     <script>
-        // Dùng hàm setTimeout để tạo độ trễ
-        setTimeout(function() {
-            // Lấy các phần tử
-            const loadingScreen = document.getElementById('loading-screen');
-            const scamScreen = document.getElementById('scam-screen');
+        // Lấy các phần tử HTML bằng ID
+        const entryButton = document.getElementById('entry-button');
+        const entryScreen = document.getElementById('entry-screen');
+        const scamScreen = document.getElementById('scam-screen');
 
-            // Ẩn màn hình chờ và hiện màn hình lừa đảo
-            loadingScreen.style.display = 'none';
-            scamScreen.style.display = 'block';
-
-        }, 3000); // 3000 milliseconds = 3 giây. Bạn có thể thay đổi thời gian này.
+        // Thêm sự kiện 'click' cho nút bấm
+        entryButton.onclick = function() {
+            entryScreen.style.display = 'none'; // Ẩn màn hình có nút bấm
+            scamScreen.style.display = 'block'; // Hiện màn hình lừa đảo
+        };
     </script>
 
 </body>
