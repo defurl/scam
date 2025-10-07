@@ -1,34 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scam</title>
+    <title>Đang xử lý...</title>
     <style>
-        /* Make sure the body takes up the full screen */
+        /* Cài đặt chung cho toàn trang */
         html, body {
             height: 100%;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #121212; /* Dark background color */
-        }
-        /* Use Flexbox to center the content */
-        body {
+            background-color: #000;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center;    /* Center vertically */
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
-        h1 {
-            color: #E53935; /* A nice shade of red */
-            font-size: 3rem; /* Make the font larger */
-            padding: 20px 40px; /* Add some space around the text */
-            border: 2px solid #E53935; /* Add a border */
-            border-radius: 10px; /* Round the corners of the border */
+
+        /* Màn hình chờ */
+        #loading-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Tạo vòng xoay loading bằng CSS */
+        .loader {
+            border: 8px solid #333; /* Vòng tròn nền */
+            border-top: 8px solid #00ff00; /* Phần xoay màu xanh */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        /* Animation cho vòng xoay */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #loading-screen h2 {
+            color: #00ff00;
+            letter-spacing: 2px;
+        }
+
+        /* Màn hình lừa đảo (ban đầu được ẩn) */
+        #scam-screen {
+            display: none;
+        }
+
+        #scam-message {
+            color: #ff0000;
+            font-size: 4vw;
+            text-shadow: 0 0 7px #ff0000, 0 0 21px #ff0000;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            to {
+                text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Bạn đã bị lừa mất 10 tỷ!</h1>
+
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <h2>ĐANG KẾT NỐI TỚI MÁY CHỦ...</h2>
+    </div>
+
+    <div id="scam-screen">
+        <h1 id="scam-message">Bạn đã bị lừa mất 10 tỷ!</h1>
+    </div>
+
+    <script>
+        // Dùng hàm setTimeout để tạo độ trễ
+        setTimeout(function() {
+            // Lấy các phần tử
+            const loadingScreen = document.getElementById('loading-screen');
+            const scamScreen = document.getElementById('scam-screen');
+
+            // Ẩn màn hình chờ và hiện màn hình lừa đảo
+            loadingScreen.style.display = 'none';
+            scamScreen.style.display = 'block';
+
+        }, 3000); // 3000 milliseconds = 3 giây. Bạn có thể thay đổi thời gian này.
+    </script>
+
 </body>
 </html>
